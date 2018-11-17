@@ -9,7 +9,7 @@
 	<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
 </head>
 <body>
-    <div data-role="page">
+    <div data-role="page" id="home">
  
         <div data-role="header">
             <h1>Home</h1>
@@ -18,15 +18,36 @@
             
         <div role="main" class="ui-content">
 			<ul data-role="listview" data-inset="true">
-				<li><a href="#">Video 1</a></li>
-				<li><a href="#">Video 2</a></li>
-				<li><a href="#">Video 3</a></li>
-				<li><a href="#">Video 4</a></li>
+				<li><a href="#player">Video 1</a></li>
+				<li><a href="#player">Video 2</a></li>
+				<li><a href="#player">Video 3</a></li>
+				<li><a href="#player">Video 4</a></li>
 			</ul>
 			<ul data-role="listview" data-inset="true">
-				<li><a href="#">Add video...</a></li>
+				<li><a href="#search">Add video...</a></li>
 			</ul>
         </div><!-- /content --> 
     </div><!-- /page -->
+	<div data-role="page" id="player">
+ 
+        <div data-role="header">
+            <h1>Player</h1>
+        </div><!-- /header -->
+		
+    </div><!-- /page -->
+	<div data-role="page" id="search">
+ 
+        <div data-role="header">
+            <h1>Search</h1>
+        </div><!-- /header -->
+		
+		<div data-role="main">
+		<div data-role="fieldcontain">
+			<label for="search-basic">Youtube search</label>
+			<input type="search" name="search" id="search-basic" placeholder="Youtube Video ID" data-theme="b" />
+		</div>
+		</div><!-- /main -->
+    </div><!-- /page -->
+	
 </body>
 </html>
