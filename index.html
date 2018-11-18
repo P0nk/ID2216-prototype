@@ -5,10 +5,27 @@
 	<title>Video player prototype</title>
 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
-	<link rel="stylesheet" href="css/style.css" />
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
 	<script src="js/script.js"></script>
+    <script src="node_modules/mediaelement/build/mediaelement-and-player.min.js"></script>
+    <link rel="stylesheet" href="node_modules/mediaelement/build/mediaelementplayer.min.css" />
+
+    <script>
+        $(document).on("pageinit", function() {
+            $('video').on("play", function() {
+                setTimeout(function(){
+                  console.log("test");     
+                    //TODO: change the progress bar color
+
+                    setTimeout(function(){
+                      console.log("test2");     
+                    //TODO: Show a go back button
+                    }, 1000);
+                }, 2000);
+            });
+}       );
+    </script>
 
 </head>
 <body>
@@ -29,6 +46,7 @@
 			<ul data-role="listview" data-inset="true">
 				<li><a href="#search">Add video...</a></li>
 			</ul>
+
         </div><!-- /content -->
 
     </div><!-- /page -->
@@ -36,7 +54,8 @@
 	<div data-role="page" id="search">
 
         <div data-role="header">
-            <h1>Video search</h1>
+          <a href="tryit.asp-filename=tryjqmob_button_back.html#" class="ui-icon ui-icon-arrow-l ui-icon-shadow" data-rel="back"></a>
+          <h1>Video search</h1>
         </div><!-- /header -->
 
 		<div data-role="main">
@@ -66,7 +85,7 @@
 
 
 	        <div role="main" class="ui-content">
-				    <iframe id = "popup_video" src = "http://player.vimeo.com/video/41135183" width = "285" height = "200"></iframe>
+                <video  controls id="video" width="285" height ="200" src="media/IMG_4604.mp4" type="video/mp4"></video>
 	        </div><!-- /content -->
 	    </div><!-- /page -->
 </body>
