@@ -5,27 +5,13 @@
 	<title>Video player prototype</title>
 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+  <link rel="stylesheet" href="node_modules/mediaelement/build/mediaelementplayer.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
+  <script src="node_modules/mediaelement/build/mediaelement-and-player.min.js"></script>
 	<script src="js/script.js"></script>
-    <script src="node_modules/mediaelement/build/mediaelement-and-player.min.js"></script>
-    <link rel="stylesheet" href="node_modules/mediaelement/build/mediaelementplayer.min.css" />
-
-    <script>
-        $(document).on("pageinit", function() {
-            $('video').on("play", function() {
-                setTimeout(function(){
-                  console.log("test");     
-                    //TODO: change the progress bar color
-
-                    setTimeout(function(){
-                      console.log("test2");     
-                    //TODO: Show a go back button
-                    }, 1000);
-                }, 2000);
-            });
-}       );
-    </script>
 
 </head>
 <body>
@@ -54,7 +40,10 @@
 	<div data-role="page" id="search">
 
         <div data-role="header">
+		<!--
           <a href="tryit.asp-filename=tryjqmob_button_back.html#" class="ui-icon ui-icon-arrow-l ui-icon-shadow" data-rel="back"></a>
+		 -->
+		  <a href="#" class="ui-icon-arrow-l" data-rel="back"></a>
           <h1>Video search</h1>
         </div><!-- /header -->
 
@@ -79,13 +68,13 @@
 	 <div data-role="page" id="videoPlayer">
 
 	        <div data-role="header">
-	       		<a href="tryit.asp-filename=tryjqmob_button_back.html#" class="ui-icon ui-icon-arrow-l ui-icon-shadow" data-rel="back"></a>
+	       		<a href="#" class="ui-icon-arrow-l" data-rel="back"></a>
             <h1>Video Player</h1>
 	        </div><!-- /header -->
 
 
 	        <div role="main" class="ui-content">
-                <video  controls id="video" width="285" height ="200" src="media/IMG_4604.mp4" type="video/mp4"></video>
+                <video controls id="video" width="285" height ="200" src="media/IMG_4604.mp4" type="video/mp4"></video>
 	        </div><!-- /content -->
 	    </div><!-- /page -->
 </body>
