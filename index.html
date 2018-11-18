@@ -2,21 +2,22 @@
 <html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>jQuery Mobile Demos</title>
-	
+	<title>Video player prototype</title>
+
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
+	<link rel="stylesheet" href="css/style.css" />
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
-		     
+	<script src="js/script.js"></script>
+
 </head>
 <body>
-    <div data-role="page">
- 
+    <div data-role="page" id="home">
+
         <div data-role="header">
             <h1>Home</h1>
         </div><!-- /header -->
- 
-            
+
         <div role="main" class="ui-content">
 			<ul data-role="listview" data-inset="true">
 				<li><a href="#videoPlayer">Video 1</a></li>
@@ -24,24 +25,49 @@
 				<li><a href="#videoPlayer">Video 3</a></li>
 				<li><a href="#videoPlayer">Video 4</a></li>
 			</ul>
+
 			<ul data-role="listview" data-inset="true">
-				<li><a href="#">Add video...</a></li>
+				<li><a href="#search">Add video...</a></li>
 			</ul>
-        </div><!-- /content --> 
+        </div><!-- /content -->
+
+    </div><!-- /page -->
+
+	<div data-role="page" id="search">
+
+        <div data-role="header">
+            <h1>Video search</h1>
+        </div><!-- /header -->
+
+		<div data-role="main">
+			<div data-role="fieldcontain">
+				<!--label for="search-basic">Video search</label-->
+				<input type="search" name="searchField" value="Åre" id="search-basic" placeholder="Youtube Video ID" data-theme="b" />
+				<button type="button" name="searchButton" onclick="showSearchItems()">Search</button>
+			</div>
+		</div><!-- /main -->
+
+		<ol data-role="listview" id="searchedItemsList">
+			<li><a href="https://www.youtube.com/watch?v=hEy57OOW5NE">ÅRE 2018!</a></li>
+			<li><a href="https://www.youtube.com/watch?v=OqKdvzOetMg">Olle testar SJ:s nattåg till Åre</a></li>
+			<li><a href="https://www.youtube.com/watch?v=JiD7rFXy9h4">Extreme skiing in Åre Sweden</a></li>
+			<li><a href="https://www.youtube.com/watch?v=Fhkgz_7s0TA">Red Bull Homerun 2018 Åre</a></li>
+			<li><a href="https://www.youtube.com/watch?v=KybhkgItuWM">Högsta Högsta - Största Droppet i Åre</a></li>
+		</ol>
+
     </div><!-- /page -->
 
 	 <div data-role="page" id="videoPlayer">
-	 
+
 	        <div data-role="header">
 	       		<a href="tryit.asp-filename=tryjqmob_button_back.html#" class="ui-icon ui-icon-arrow-l ui-icon-shadow" data-rel="back"></a>
-	            <h1>Video Player</h1>
+            <h1>Video Player</h1>
 	        </div><!-- /header -->
-	 
-	            
+
+
 	        <div role="main" class="ui-content">
-				<iframe id = "popup_video" src = "http://player.vimeo.com/video/41135183" width = "285" height = "200"></iframe>
-	        </div><!-- /content --> 
+				    <iframe id = "popup_video" src = "http://player.vimeo.com/video/41135183" width = "285" height = "200"></iframe>
+	        </div><!-- /content -->
 	    </div><!-- /page -->
-	
 </body>
 </html>
