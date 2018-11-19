@@ -87,6 +87,7 @@
 								  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 								  var player;
+								  var firstPlay = true;
 								  function onYouTubeIframeAPIReady() {
 								    player = new YT.Player('existing-iframe-example', {
 								        events: {
@@ -119,6 +120,10 @@
 								    }
 								  }
 								  function onPlayerStateChange(event) {
+									if (firstPlay && event.data == YT.PlayerState.PLAYING) {
+										firstPlay = false;
+										startPlaying();
+									}
 								    changeBorderColor(event.data);
 								  }
 								</script>
