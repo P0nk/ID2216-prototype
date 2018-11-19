@@ -61,26 +61,30 @@ function setButtonText(buttonId, text){
 	$("#"+buttonId).siblings().html(text);
 }
 
+function setButtonOnClick(buttonId, startTime) {
+	$("#"+buttonId).click(function() {
+		player.seekTo(startTime, true);
+	});
+}
+
 function startPlaying(){
 	setTimeout(function(){
 		//$("#rewindBtn1").siblings().html('0:10-');
 		setButtonText("rewindBtn1", "00:10-");
 		showButton("rewindBtn1");
-
-		setTimeout(function(){
-			setButtonText("rewindBtn1", "00:10-00:18");
-
-			setTimeout(function(){
-				setButtonText("rewindBtn2", "01:00-");
-				showButton("rewindBtn2");
-
-				setTimeout(function(){
-					setButtonText("rewindBtn2", "01:00-01:20");
-
-				}, 2000);
-			}, 2000);
-		}, 2000);
-	}, 2000);
+		setButtonOnClick("rewindBtn1", 10);
+	}, 10000);
+	setTimeout(function(){
+		setButtonText("rewindBtn1", "00:10-00:20");
+	}, 10000);
+	setTimeout(function(){
+		setButtonText("rewindBtn2", "01:00-");
+		showButton("rewindBtn2");
+		setButtonOnClick("rewindBtn2", 60);
+	}, 60000);
+	setTimeout(function(){
+		setButtonText("rewindBtn2", "01:00-01:20");
+	}, 80000);
 } // 4k, 8k, 42k, 20k
 
 	//showButton("rewindBtn2");
