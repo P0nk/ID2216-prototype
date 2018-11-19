@@ -1,82 +1,88 @@
+var tag = document.createElement('script');
+tag.id = 'iframe-demo';
+tag.src = 'https://www.youtube.com/iframe_api';
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-//$(document).ready(startPlaying());
-/*
-// 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
+var player;
+var firstPlay = true;
 
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+function onYouTubeIframeAPIReady() {
+	player = new YT.Player('existing-iframe-example', {
+		events: {
+			'onReady': onPlayerReady,
+			'onStateChange': onPlayerStateChange
+		}
+	});
+}
 
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player;
+function onPlayerReady(event) {
+	document.getElementById('existing-iframe-example').style.borderColor = '#FF6D00';
+}
 
-      }
+function changeBorderColor(playerStatus) {
+	var color;
+	if (playerStatus == -1) {
+		color = "#37474F"; // unstarted = gray
+	} else if (playerStatus == 0) {
+		color = "#FFFF00"; // ended = yellow
+	} else if (playerStatus == 1) {
+		//color = "#33691E"; // playing = green
 
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
+	} else if (playerStatus == 2) {
+		color = "#DD2C00"; // paused = red
+	} else if (playerStatus == 3) {
+		color = "#AA00FF"; // buffering = purple
+	} else if (playerStatus == 5) {
+		color = "#FF6DOO"; // video cued = orange
+	}
+	if (color) {
+		document.getElementById('existing-iframe-example').style.borderColor = color;
+	}
+}
 
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      var done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
-          done = true;
-        }
-      }
-      function stopVideo() {
-        player.stopVideo();
-      }
+function onPlayerStateChange(event) {
+	if (firstPlay && event.data == YT.PlayerState.PLAYING) {
+		firstPlay = false;
+		startPlaying();
+	}
+	changeBorderColor(event.data);
+}
 
+// Make list of searched videos visible
 function showSearchItems(){
 	document.getElementById("searchedItemsList").style.display = "block";
 }
-*/
 
-$(document).on("pageinit", function() {
-	$('video').on("play", function() {
-		setTimeout(function(){
-			console.log("test");
-			//TODO: change the progress bar color
-			document.getElementById("rewindBtn1").innerHTML = "0:10-";
-			document.getElementById("rewindBtn1").style.display = "block";
-			setTimeout(function(){
-				console.log("test2");
-				//TODO: Show a go back button
-			}, 10000);
-		}, 2000);
-	});
-});
-
+// Make rewind button visible
 function showButton(buttonId){
-		$('#'+buttonId).parent().show().parent().show();
+	$('#'+buttonId).parent().show().parent().show();
 }
 
+// Set the text of a button
 function setButtonText(buttonId, text){
 	$("#"+buttonId).siblings().html(text);
 }
 
+// Set onclick of button to set video to play specific time
 function setButtonOnClick(buttonId, startTime) {
 	$("#"+buttonId).click(function() {
 		player.seekTo(startTime, true);
 	});
 }
 
+// Pretending there's noise during intervals 00:10-00:20
+// and 01:00-01:20. Rewind buttons appear automatically at these
+// preset times.
 function startPlaying(){
 	setTimeout(function(){
-		//$("#rewindBtn1").siblings().html('0:10-');
 		setButtonText("rewindBtn1", "00:10-");
 		showButton("rewindBtn1");
 		setButtonOnClick("rewindBtn1", 10);
 	}, 10000);
 	setTimeout(function(){
 		setButtonText("rewindBtn1", "00:10-00:20");
-	}, 10000);
+	}, 20000);
 	setTimeout(function(){
 		setButtonText("rewindBtn2", "01:00-");
 		showButton("rewindBtn2");
@@ -85,17 +91,4 @@ function startPlaying(){
 	setTimeout(function(){
 		setButtonText("rewindBtn2", "01:00-01:20");
 	}, 80000);
-} // 4k, 8k, 42k, 20k
-
-	//showButton("rewindBtn2");
-	/*
-	setTimeout(function(){
-
-		// JQM introduced a <Span> which contains the text
-
-		$("#rewindBtn1").prop("disabled", false);
-		// 2 wrappers: explicit div and jqm div
-		$("#rewindBtn1").parent().show().parent().show();
-
-	}, 2000);
-	*/
+}
