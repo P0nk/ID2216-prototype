@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.css" />
   <link rel="stylesheet" href="node_modules/mediaelement/build/mediaelementplayer.min.css" />
 	<link rel="stylesheet" href="css/style.css" />
-	
+
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.2.1/jquery.mobile-1.2.1.min.js"></script>
   <script src="node_modules/mediaelement/build/mediaelement-and-player.min.js"></script>
@@ -56,11 +56,11 @@
 		</div><!-- /main -->
 
 		<ol data-role="listview" id="searchedItemsList">
-			<li><a href="https://www.youtube.com/watch?v=hEy57OOW5NE">ÅRE 2018!</a></li>
-			<li><a href="https://www.youtube.com/watch?v=OqKdvzOetMg">Olle testar SJ:s nattåg till Åre</a></li>
-			<li><a href="https://www.youtube.com/watch?v=JiD7rFXy9h4">Extreme skiing in Åre Sweden</a></li>
-			<li><a href="https://www.youtube.com/watch?v=Fhkgz_7s0TA">Red Bull Homerun 2018 Åre</a></li>
-			<li><a href="https://www.youtube.com/watch?v=KybhkgItuWM">Högsta Högsta - Största Droppet i Åre</a></li>
+			<li><a href="#videoPlayer">ÅRE 2018!</a></li> <!-- https://www.youtube.com/watch?v=hEy57OOW5NE -->
+			<li><a href="#videoPlayer">Olle testar SJ:s nattåg till Åre</a></li><!-- https://www.youtube.com/watch?v=OqKdvzOetMg -->
+			<li><a href="#videoPlayer">Extreme skiing in Åre Sweden</a></li><!-- https://www.youtube.com/watch?v=JiD7rFXy9h4 -->
+			<li><a href="#videoPlayer">Red Bull Homerun 2018 Åre</a></li><!-- https://www.youtube.com/watch?v=Fhkgz_7s0TA -->
+			<li><a href="#videoPlayer">Högsta Högsta - Största Droppet i Åre</a></li><!-- https://www.youtube.com/watch?v=KybhkgItuWM -->
 		</ol>
 
     </div><!-- /page -->
@@ -74,8 +74,106 @@
 
 
 	        <div role="main" class="ui-content">
-                <video controls id="video" width="285" height ="200" src="media/IMG_4604.mp4" type="video/mp4"></video>
-	        </div><!-- /content -->
+                <!--video controls id="video" width="512" height ="300" src="media/IMG_4604.mp4" type="video/mp4"></video-->
+								<iframe id="existing-iframe-example"
+								src="https://www.youtube.com/embed/ScMzIvxBSi4?enablejsapi=1"
+								width="100%" height="300"></iframe>
+
+								<script type="text/javascript">
+								  var tag = document.createElement('script');
+								  tag.id = 'iframe-demo';
+								  tag.src = 'https://www.youtube.com/iframe_api';
+								  var firstScriptTag = document.getElementsByTagName('script')[0];
+								  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+								  var player;
+								  function onYouTubeIframeAPIReady() {
+								    player = new YT.Player('existing-iframe-example', {
+								        events: {
+								          'onReady': onPlayerReady,
+								          'onStateChange': onPlayerStateChange
+								        }
+								    });
+								  }
+								  function onPlayerReady(event) {
+								    document.getElementById('ytPlayer').style.borderColor = '#FF6D00';
+								  }
+								  function changeBorderColor(playerStatus) {
+								    var color;
+								    if (playerStatus == -1) {
+								      color = "#37474F"; // unstarted = gray
+								    } else if (playerStatus == 0) {
+								      color = "#FFFF00"; // ended = yellow
+								    } else if (playerStatus == 1) {
+								      color = "#33691E"; // playing = green
+								    } else if (playerStatus == 2) {
+								      color = "#DD2C00"; // paused = red
+								    } else if (playerStatus == 3) {
+								      color = "#AA00FF"; // buffering = purple
+								    } else if (playerStatus == 5) {
+								      color = "#FF6DOO"; // video cued = orange
+								    }
+								    if (color) {
+								      document.getElementById('existing-iframe-example').style.borderColor = color;
+								    }
+								  }
+								  function onPlayerStateChange(event) {
+								    changeBorderColor(event.data);
+								  }
+								</script>
+
+<!--
+								<div id="player"></div>
+								<script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'ScMzIvxBSi4',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+	-->
+								<ol>
+									<li><button class="rewindBtn" name="rewindBtn2">0:43-0:51</button></li>
+									<li><button class="rewindBtn" name="rewindBtn1">0:10-0:18</button></li>
+								</ol>
+
+
+				  </div><!-- /content -->
 	    </div><!-- /page -->
 </body>
 </html>

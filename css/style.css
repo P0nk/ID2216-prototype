@@ -1,3 +1,18 @@
 #searchedItemsList {
 	display: none;
 }
+
+.rewindBtn{
+	display: none;
+}
+
+#ytPlayer {
+	border-top: 5px solid red;
+	border-bottom: 5px solid red;
+	border-left: none;
+	border-right: none;
+}
+
+#existing-iframe-example{
+	border: 5px solid red;
+}
