@@ -1,17 +1,6 @@
-/*
-$(document).ready(function(){
-	function onYouTubeIframeAPIReady() {
-		player = new YT.Player('player', {
-			height: '390',
-			width: '640',
-			videoId: 'M7lc1UVf-VE',
-			events: {
-				'onReady': onPlayerReady,
-				'onStateChange': onPlayerStateChange
-			}
-		});
-}})
 
+$(document).ready(startPlaying());
+/*
 // 2. This code loads the IFrame Player API code asynchronously.
       var tag = document.createElement('script');
 
@@ -63,3 +52,46 @@ $(document).on("pageinit", function() {
 		}, 2000);
 	});
 });
+
+function showButton(buttonId){
+		$('#'+buttonId).parent().show().parent().show();
+}
+
+function setButtonText(buttonId, text){
+	$("#"+buttonId).siblings().html(text);
+}
+
+function startPlaying(){
+	setTimeout(function(){
+		//$("#rewindBtn1").siblings().html('0:10-');
+		setButtonText("rewindBtn1", "00:10-");
+		showButton("rewindBtn1");
+
+		setTimeout(function(){
+			setButtonText("rewindBtn1", "00:10-00:18");
+
+			setTimeout(function(){
+				setButtonText("rewindBtn2", "01:00-");
+				showButton("rewindBtn2");
+
+				setTimeout(function(){
+					setButtonText("rewindBtn2", "01:00-01:20");
+
+				}, 2000);
+			}, 2000);
+		}, 2000);
+	}, 2000);
+} // 4k, 8k, 42k, 20k
+
+	//showButton("rewindBtn2");
+	/*
+	setTimeout(function(){
+
+		// JQM introduced a <Span> which contains the text
+
+		$("#rewindBtn1").prop("disabled", false);
+		// 2 wrappers: explicit div and jqm div
+		$("#rewindBtn1").parent().show().parent().show();
+
+	}, 2000);
+	*/
