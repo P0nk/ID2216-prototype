@@ -77,22 +77,36 @@ function setButtonOnClick(buttonId, startTime) {
 // and 01:00-01:20. Rewind buttons appear automatically at these
 // preset times.
 function startPlaying(){
+	var firstNoiseStart;
+	var firstNoiseEnd;
+	var secondNoiseStart;
+	var secondNoiseEnd;
 	setTimeout(function(){
-		setButtonText("rewindBtn1", "00:20-");
-		showButton("rewindBtn1");
-		setButtonOnClick("rewindBtn1", 20);
 		audio1.play();
+		firstNoiseStart = Math.round(player.getCurrentTime());
+		setButtonOnClick("rewindBtn1", firstNoiseStart);
+		setButtonText("rewindBtn1", "00:"+ firstNoiseStart + "-");
+		showButton("rewindBtn1");
+
 	}, 20000);
 	setTimeout(function(){
-		setButtonText("rewindBtn1", "00:20-00:33");
-	}, 33000);
+		firstNoiseEnd = Math.round(player.getCurrentTime());
+		setButtonText("rewindBtn1", "00:"+ firstNoiseStart + "-" + "00:" + firstNoiseEnd);
+	}, 32000);
 	setTimeout(function(){
-		setButtonText("rewindBtn2", "01:00-");
-		showButton("rewindBtn2");
-		setButtonOnClick("rewindBtn2", 60);
 		audio2.play();
+		secondNoiseStart = Math.round(player.getCurrentTime());
+		snsSeconds = (secondNoiseStart % 60 < 10) ? "0" + secondNoiseStart % 60 : secondNoiseStart % 60;
+		setButtonOnClick("rewindBtn2", secondNoiseStart);
+		setButtonText("rewindBtn2", "0"+ Math.floor(secondNoiseStart/60) + ":" + snsSeconds + "-");
+		showButton("rewindBtn2");
+
 	}, 60000);
 	setTimeout(function(){
-		setButtonText("rewindBtn2", "01:00-01:10");
-	}, 70000);
+		snsSeconds = (secondNoiseStart % 60 < 10) ? "0" + secondNoiseStart % 60 : secondNoiseStart % 60;
+		secondNoiseEnd = Math.round(player.getCurrentTime());
+		sneSeconds = (secondNoiseEnd % 60 < 10) ? "0" + secondNoiseEnd % 60 : secondNoiseEnd % 60;
+		buttonText = "0"+ Math.floor(secondNoiseStart/60) + ":" + snsSeconds + "-" + "0"+ Math.floor(secondNoiseEnd/60) + ":" + sneSeconds;
+		setButtonText("rewindBtn2", buttonText);
+	}, 71000);
 }
