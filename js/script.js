@@ -6,6 +6,8 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
 var firstPlay = true;
+var audio1 = new Audio('Noise_1.mp3');
+var audio2 = new Audio('Noise_2.mp3');
 
 function onYouTubeIframeAPIReady() {
 	player = new YT.Player('existing-iframe-example', {
@@ -76,19 +78,21 @@ function setButtonOnClick(buttonId, startTime) {
 // preset times.
 function startPlaying(){
 	setTimeout(function(){
-		setButtonText("rewindBtn1", "00:10-");
+		setButtonText("rewindBtn1", "00:20-");
 		showButton("rewindBtn1");
-		setButtonOnClick("rewindBtn1", 10);
-	}, 10000);
-	setTimeout(function(){
-		setButtonText("rewindBtn1", "00:10-00:20");
+		setButtonOnClick("rewindBtn1", 20);
+		audio1.play();
 	}, 20000);
+	setTimeout(function(){
+		setButtonText("rewindBtn1", "00:20-00:33");
+	}, 33000);
 	setTimeout(function(){
 		setButtonText("rewindBtn2", "01:00-");
 		showButton("rewindBtn2");
 		setButtonOnClick("rewindBtn2", 60);
+		audio2.play();
 	}, 60000);
 	setTimeout(function(){
-		setButtonText("rewindBtn2", "01:00-01:20");
-	}, 80000);
+		setButtonText("rewindBtn2", "01:00-01:10");
+	}, 70000);
 }
